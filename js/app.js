@@ -125,17 +125,8 @@ const createPost = (post) => {
                   <hr/>
 
                   <div class="post__description">
-                    ${post.comments.forEach(comment => `<small>
-                    <a class="post__name--underline" href="#">
-                        ${comment?.user}
-                      
-                      
-                    </a>
-                    ${comment?.text}
-                    
-                  </small>`)}
-                  </div>
-                  <span class="post__date-time">30 minutes ago</span>
+                    ${post.comments.map(comment => '<small><a class="post__name--underline" href="#">' + comment?.user + ' </a>' + comment?.text + '</small></div><span class="post__date-time">30 minutes ago</span><br>'
+    )}
                 </div>
               </div>
       `;
