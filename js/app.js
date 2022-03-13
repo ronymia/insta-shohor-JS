@@ -52,6 +52,14 @@ const switchTab = (id) => {
 
 const createPost = (post) => {
   const image = post.image;
+  const userImage = post.userImage;
+  const likedImage = [
+    'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cHJvZmlsZXx8fHx8fDE2NDcxNzg0Mjg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080',
+    'https://images.unsplash.com/photo-1580489944761-15a19d654956?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cHJvZmlsZXx8fHx8fDE2NDcxNzg0NTM&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080',
+    'https://images.unsplash.com/photo-1527203561188-dae1bc1a417f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cHJvZmlsZXx8fHx8fDE2NDcxNzg0Njg&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080',
+    'https://images.unsplash.com/photo-1618641986557-1ecd230959aa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cHJvZmlsZXx8fHx8fDE2NDcxNzg0ODE&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080',
+    'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cHJvZmlsZXx8fHx8fDE2NDcxNzg1MDU&ixlib=rb-1.2.1&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=1080'
+  ]
   const div = document.createElement("article");
   div.classList.add("post");
   div.innerHTML = `
@@ -62,7 +70,7 @@ const createPost = (post) => {
                     target="_blank"
                     class="post__avatar"
                   >
-                    <img src="${image}" alt="User Picture" />
+                    <img src="${post.userImage}" alt="User Picture" />
                   </a>
                   <a href="#" class="post__user">phero</a>
                 </div>
@@ -106,7 +114,7 @@ const createPost = (post) => {
                 <div class="post__infos">
                   <div class="post__likes">
                     <a href="#" class="post__likes-avatar">
-                      <img src=${"https://source.unsplash.com/random?person"} alt="User Picture" />
+                    <img id="likedImage" src="${likedImage[Math.floor(Math.random() * (((likedImage.length - 1) - 0) + 1) + 0)]}" alt="User Picture" />
                     </a>
 
                     <span>Liked by
@@ -120,7 +128,7 @@ const createPost = (post) => {
                     ${post.comments.forEach(comment => `<small>
                     <a class="post__name--underline" href="#">
                         ${comment?.user}
-                        ${console.log(comment)}
+                      
                       
                     </a>
                     ${comment?.text}
@@ -150,11 +158,12 @@ const displayLikedPosts = () => {
     const div = createPost(post);
     document.getElementById("liked").appendChild(div);
   });
+  console.log(likedPosts);
 };
 
 const displayReportedPosts = () => {
   const reportedPosts = getReportedPosts();
-  posts.forEach((post) => {
+  reportedPosts.forEach((post) => {
     const div = createPost(post);
     document.getElementById("reported").appendChild(div);
   });
