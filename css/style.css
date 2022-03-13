@@ -263,7 +263,8 @@ img {
   width: 100%;
   /* height: 15rem; */
   /* margin: ; */
-  padding: 3.9rem;
+  padding: 2rem 3.9rem;
+  background-color: #f8f9fa;
 }
 
 .answer{
